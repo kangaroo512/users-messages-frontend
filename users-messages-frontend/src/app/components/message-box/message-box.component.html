@@ -1,0 +1,42 @@
+<ul class="tab-nav">
+    <li [class.active]="activeTab === 'inbox'" (click)="onClick('inbox')">Inbox</li>
+    <li [class.active]="activeTab === 'sent'" (click)="onClick('sent')">Sent</li>
+    <li [class.active]="activeTab === 'archived'" (click)="onClick('archived')">Archived</li>
+    <li [class.active]="activeTab === 'trash'" (click)="onClick('trash')">Trash</li>
+    <li [class.active]="activeTab === 'spam'" (click)="onClick('spam')">Spam</li>
+</ul>
+<div class="tab-nav">
+    <div><input type="checkbox"></div>
+    <div class="nav-buttons">
+        <span class="button-text">Mark as read</span>
+        <span class="button-text">Mark as unread</span>
+        <span class="button-text">Move to archive</span>
+        <span class="button-text">Move to trash</span>
+        <span class="button-text">Move to spam</span>
+    </div>
+</div>
+<div *ngIf="activeTab === 'inbox'" class="tab-content">
+
+</div>
+
+
+<div *ngIf="activeTab === 'sent'" class="tab-content">
+
+</div>
+
+
+<div *ngIf="activeTab === 'archived'" class="tab-content">
+
+</div>
+
+
+<div *ngIf="activeTab === 'trash'" class="tab-content">
+
+</div>
+
+
+<div *ngIf="activeTab === 'spam'" class="tab-content">
+
+</div>
+
+

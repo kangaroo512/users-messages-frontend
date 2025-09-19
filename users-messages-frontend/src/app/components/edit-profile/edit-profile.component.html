@@ -1,0 +1,244 @@
+
+
+<form *ngIf="user" (ngSubmit)="onSubmit(userDTOForm)" #userDTOForm="ngForm">
+
+    @if(errors['nickname']) {
+        <p>{{errors['nickname']}}</p>
+    }
+    <div class="form-floating mb-3">
+        <input type="text" name="nickname" [(ngModel)]="user.nickname" class="form-control" id="nickname" placeholder="nickname" required>
+        
+    </div>
+
+    <!-- LOCATION -->
+     <!-- COUNTRY-->
+    @if(errors['country']) {
+        <p>{{errors['country']}}</p>
+    }
+    <div class="form-floating mb-3"
+    >
+        <select class="form-control small-flex" name="country" [(ngModel)]="user.location.country">
+        <option disabled selected>Country</option>
+        <option 
+        *ngFor="let l of countries; let i = index" 
+
+        id="country-{{i}}">{{l}}</option>
+        </select>
+    </div>
+
+    <!-- TOWN  -->
+
+    @if(errors['location.town']) {
+        <p>{{errors['location.town']}}</p>
+    }
+    <div class="form-floating mb-3">
+        <input type="text" name="town" placeholder="town" [(ngModel)]="user.location.town" class="form-control">
+    </div>
+
+    <!-- STATE -->
+
+    @if(errors['location.stateProvince']) {
+        <p>{{errors['location.stateProvince']}}</p>
+    }
+    <div class="form-floating mb-3">
+        <input type="text" name="state" placeholder="state" [(ngModel)]="user.location.stateProvince" class="form-control">
+    </div>
+    <!-- GENDER -->
+
+        @if(errors['gender']) {
+        <p>{{errors['gender']}}</p>
+    }
+    <div class="form-floating mb-3"
+    >
+        <select class="form-control small-flex" name="gender" [(ngModel)]="user.gender">
+        <option selected>{{user.gender}}</option>
+        <option 
+        *ngFor="let l of genders; let i = index" 
+
+        id="gender-{{i}}">{{l}}</option>
+        </select>
+    </div>
+
+    <!-- BIRTHDATE -->
+     @if(errors['birthDate']) {
+        <p>{{errors['birthDate']}}</p>
+     }
+    <div class="form-floating mb-3">
+        <input type="date" name="birthdate" [(ngModel)]="user.birthdate" class="form-control" id="birthdate" placeholder="birthdate">
+    </div>
+
+
+
+    
+    <!-- NATIVE LANGUAGE -->
+    @if(validateLanguageErrors()) {
+        <p>Complete the language information, you son of a fucking bitch!</p>
+    }
+    <!-- NATIVE LANGUAGE -->
+    <button type="button" class="btn btn-secondary" (click)="addField()">Add a new native language</button>
+
+
+
+    <div *ngFor="let lang of userNativeLanguages; let i = index" class="language-select-wrapper">
+
+        <!-- PROFICIENCY VALIDATOR -->
+        <div *ngIf="userDTOForm.submitted && (languageNat.touched || languageNat.invalid)">
+            <small *ngIf="languageNat.invalid">
+                A proficiency is requried
+            </small>
+        </div>
+        <!-- PROFICIENCY VALIDATOR -->
+        
+        <select
+        class="form-control small-flex"
+        [(ngModel)]="userNativeLanguages[i].language"
+        name="nativeLanguage{{i}}"
+        required
+        #languageNat="ngModel"
+        >
+        <option [ngValue]="userNativeLanguages[i].language" selected>{{userNativeLanguages[i].language.name || ''}}</option>
+        <option *ngFor="let l of languages" [ngValue]="l">
+            {{l.name}}
+        </option>
+        </select>
+        <button type="button" class="btn btn-secondary" (click)="deleteField(i)">Delete</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+       <!-- PRACTICE LANGUAGE -->
+
+    <button type="button" class="btn btn-secondary" (click)="addPracticeField()">Add a new Practice language</button>
+
+    <div *ngFor="let lang of userPracticeLanguages; let i = index" class="language-select-wrapper">
+
+        <div *ngIf="submitted && (languageFer.touched || languageFer.invalid)">
+            <small *ngIf="languageFer.invalid">A language is required</small>
+        </div>
+        
+        <select
+        class="form-control small-flex"
+        [(ngModel)]="userPracticeLanguages[i].language"
+        name="languagePractice{{i}}"
+        required
+        #languageFer="ngModel"
+        >
+        <option [ngValue]="userPracticeLanguages[i]?.language || {}" selected>{{userPracticeLanguages[i].language.name || '-- Select language --'}}</option>
+        <option *ngFor="let l of languages" [ngValue]="l">
+            {{l.name}}
+        </option>
+        </select>
+
+        <!-- PROFICIENCY VALIDATOR -->
+        <div *ngIf="userDTOForm.submitted && (languageFer.touched || languageFer.invalid)">
+            <small *ngIf="languageFer.invalid">
+                A proficiency is requried
+            </small>
+        </div>
+        <!-- PROFICIENCY VALIDATOR -->
+
+        <select
+        class="form-control small-flex"
+        [(ngModel)]="userPracticeLanguages[i].proficiencyLevel"
+        name="languagePracticeProciciency{{i}}"
+        required
+        #languageFer="ngModel"
+        >
+        <option [ngValue]="userPracticeLanguages[i].proficiencyLevel" selected>{{userPracticeLanguages[i].proficiencyLevel || '-- Select a Proficiency --'}}</option>
+        <option *ngFor="let p of getFilteredLanguagePracticeList(i)" [ngValue]="p">
+            {{p}}
+        </option>
+        </select>
+        <button type="button" class="btn btn-secondary" (click)="deletePracticeField(i)">Delete</button>
+    </div>
+
+
+
+
+
+    <!-- TYPE OF EXCHANGE -->
+    <div>
+        @if(errors['typeOfExchange.faceToFaceConversation']) {
+            <p>Value required</p>
+        }
+        <label for="facetoface">Face To Face</label>
+        <select class="form-control small-flex" name="facetoface" id="facetoface" [(ngModel)]="user.typeOfExchange.faceToFaceConversation">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+
+        @if(errors['typeOfExchange.correspondencePenPal']) {
+            <p>Value required</p>
+        }
+        <label for="correspondance">Correspondance</label>
+        <select class="form-control small-flex" name="correspondance" id="correspondance" [(ngModel)]="user.typeOfExchange.correspondencePenPal">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+
+        @if(errors['typeOfExchange.chatSoftware']) {
+            <p>Value required</p>
+        }
+        <label for="chatsoftware">Chat Software</label>
+        <select
+        class="form-control small-flex" 
+        name="chatsoftware" 
+        id="chatsoftware"
+        [(ngModel)]="user.typeOfExchange.chatSoftware">
+            <option value="false">No</option>
+            <option *ngFor="let c of chatSoftwares; let i = index" [value]="c">{{formatChatSoftwareOption(c)}}</option>
+        </select>
+    </div>
+
+
+    
+
+    <!-- HOBBIES -->
+    @if(errors['hobbies']) {
+        <p>You must enter at least one hobby</p>
+    }
+    <div class="form-flaoting mb-3">
+        <input 
+        type="text" 
+        name="hobbies"
+        class="form-control" 
+        [(ngModel)]="hobbiesInput"
+        (blur) = "processHobbies()" 
+        placeholder="write your hobbies">
+        <label for="example">Example: tennis,videogames,reading</label>
+    </div>
+
+
+
+
+        <!-- DESCRIPTION -->
+    @if(errors['description']) {
+        You must enter a description
+    }
+    <div>
+        <label for="description">Description</label>
+        <textarea 
+        name="description" 
+        id="description"
+        class="form-control"
+        [(ngModel)]="user.description"
+        [attr.maxLength]="500"
+        rows="5"
+        placeHolder="Write a brief description">
+        </textarea>
+        <small class="text-muted">{{user.description ? user.description.length : 0}}/500 characters</small>
+    </div>
+
+
+    <button type="submit">Submit</button>
+
+</form>
+
+

@@ -1,0 +1,140 @@
+<!-- tab-nav.component.html -->
+<ul class="tab-nav">
+  <li [class.active]="activeTab === 'search'" (click)="selectTab('search')">Search</li>
+  <li [class.active]="activeTab === 'favorites'" (click)="selectTab('favorites')">Favorite Search</li>
+  <li [class.active]="activeTab === 'results'" (click)="selectTab('results')">Results</li>
+</ul>
+
+<div *ngIf="activeTab === 'search'" class="tab-content">
+<form (ngSubmit)="onSearchSubmit()" #searchForm="ngForm">
+  <!-- Part 1 -->
+  <div class="form-section">
+    <div class="section-header">Describe your language partner</div>
+  </div>
+
+  <!-- Part 2 -->
+<!-- Part 2 -->
+<div class="form-section horizontal">
+  <select class="form-control small-flex"
+  [(ngModel)]="user.spokenLanguage.name"
+  name="spokenlanguage"
+  >
+    <option [ngValue]="''" disabled>Speaks</option>
+    <option [ngValue]="l.name" *ngFor="let l of referenceInfo.languages; let i = index">{{l.name}}</option>
+  </select>
+
+  <select class="form-control small-flex"
+  [(ngModel)]="user.practiceLanguage.languageName"
+  name="practiceLanguageName"
+  >
+    <option [ngValue]="''" disabled>Learning</option>
+    <option [ngValue]="l.name" *ngFor="let l of referenceInfo.languages; let i = index">{{l.name}}</option>
+  </select>
+
+  <div class="vertical-group">
+    <select class="form-control"
+    [(ngModel)]="user.practiceLanguage.fromLevel"
+    name="fromLevel"
+    >
+      <option [ngValue]="''" disabled>From (Level)</option>
+      <option [ngValue]="p" *ngFor="let p of referenceInfo.proficiencies; let i = index">{{p}}</option>
+    </select>
+    <select class="form-control"
+    [(ngModel)]="user.practiceLanguage.toLevel"
+    name="toLevel">
+      <option [ngValue]="''" disabled>To (Level)</option>
+      <option [ngValue]="p" *ngFor="let p of referenceInfo.proficiencies; let i = index">{{p}}</option>
+    </select>
+  </div>
+</div>
+
+
+  <!-- Part 3 -->
+
+  <!-- Part 4 -->
+<!-- Part 4 -->
+<div class="form-section horizontal">
+  <select class="form-control small-flex"
+  [(ngModel)]="user.location.country"
+  name="country">
+    <option [ngValue]="''" disabled>Country</option>
+    <option [ngValue]="stringToPascalCase(c)" *ngFor="let c of referenceInfo.countries">{{stringToPascalCase(c)}}</option>
+  </select>
+
+  <div class="vertical-group">
+    <input type="text" class="form-control" placeholder="Town" [(ngModel)]="user.location.city" name="city">
+    <input type="text" class="form-control" placeholder="State (Province)" [(ngModel)]="user.location.state" name="state">
+  </div>
+
+  <div class="vertical-group">
+    <select class="form-control">
+      <option disabled selected>From (Time Zone)</option>
+      <option>UTC-6</option><option>UTC</option><option>UTC+2</option>
+    </select>
+    <select class="form-control">
+      <option disabled selected>To (Time Zone)</option>
+      <option>UTC-6</option><option>UTC</option><option>UTC+2</option>
+    </select>
+  </div>
+</div>
+
+
+  <!-- Part 5 -->
+  <div class="form-section">
+    <div class="section-header">Type of Exchange</div>
+  </div>
+
+  <!-- Part 6 -->
+  <div class="form-section horizontal">
+    <label><input type="checkbox" name="facetoface" [(ngModel)]="user.contactMethod.isFaceToFaceConversation"> Face to face conversation</label>
+    <label><input type="checkbox" name="correspondence" [ngModel]="user.contactMethod.isCorrespondencePenPal"> Correspondence (Pen-Pal)</label>
+    <label><input type="checkbox" name="chatsoftware" (change)="chatSoftFlag()"> Using a chat software</label>
+  </div>
+
+  @if(chatFlag) {
+  <div class="vertical-group">
+    <select class="form-control" name="chatSoftwareOptions" [(ngModel)]="user.contactMethod.chatSoftware">
+      <option [ngValue]="'ANY'" style="color: white;">Any</option>
+      <option [ngValue]="l" *ngFor="let l of referenceInfo.chatSoftwares; let i = index;">{{stringToPascalCase(l)}}</option>
+    </select>
+  </div>
+
+  }
+
+  <!-- Part 7 -->
+ <!-- Part 7 -->
+<div class="form-section horizontal">
+  <input type="text" name="nickname" [(ngModel)]="user.nickname" class="form-control small-flex" placeholder="Nickname">
+
+  <div class="vertical-group">
+    <input type="number" name="agefrom" min="0" max="99" maxlength="2" [(ngModel)]="user.fromAge" class="form-control" placeholder="Age From">
+    <input type="number" name="ageto" min="0" max="99" maxlength="2" [(ngModel)]="user.toAge" class="form-control" placeholder="Age To">
+  </div>
+
+  <select class="form-control small-flex" name="gender" [(ngModel)]="user.gender">
+    <option disabled  [ngValue]="''">Gender</option>
+    <option *ngFor="let g of referenceInfo.genders" [ngValue]="g" placeholder="Gender">{{g}}</option>
+  </select>
+</div>
+<button id="search-button" type="submit">Search</button>
+</form>
+</div>
+
+<div *ngIf="activeTab === 'favorites'" class="tab-content">
+  <p>Your favorite searches will appear here.</p>
+</div>
+
+<div *ngIf="activeTab === 'results'" class="tab-content">
+  <p>Search results will appear here.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+

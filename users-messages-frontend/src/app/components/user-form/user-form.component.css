@@ -1,0 +1,76 @@
+/* Main form styling */
+form {
+  width: 60%;
+  margin: 30px auto;
+  background: linear-gradient(to bottom, #1f1c2c, #928dab);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+/* Style for each form group */
+.form-floating {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.form-control {
+  background-color: #2c2c54;
+  border: 1px solid #888;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* Input placeholder text color */
+.form-control::placeholder {
+  color: #bbb;
+}
+
+/* Labels */
+.form-floating > label {
+  color: #f8f9fa;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+/* Buttons */
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button[type="button"].btn-secondary {
+  background-color: #636e72;
+  color: #fff;
+}
+
+button[type="button"].btn-secondary:hover {
+  background-color: #4b5254;
+}
+
+button[type="submit"] {
+  background-color: #6c5ce7;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: #4e37d1;
+}
+
+/* Language input fields */
+div[ng-reflect-ng-for-of] {
+  margin-top: 15px;
+}
+
+div[ng-reflect-ng-for-of] input {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,32 @@
+<div class="sidebar d-flex flex-column">
+  <h5 class="mb-3">Menu</h5>
+  <ul class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Language</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['search']">Search</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['messages']">Messages</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['']">Contacts</a></li>
+    <li class="nav-item position-relative"><a class="nav-link">My account</a>
+      <ul class="submenu list-unstyled position-absolute bg-light p-2 shadow" style="top: 100%; left: 0;">
+        <li><a class="dropdown-item" href="#" [routerLink]="['profile', 'Casca']">Profile</a></li>
+        <li><a class="dropdown-item" href="#" [routerLink]="['edit-profile', 'Nier']">Edit Profile</a></li>
+        <li><a class="dropdown-item" href="#">Change email</a></li>
+        <li><a class="dropdown-item" href="#">Change password</a></li>
+        <li><a class="dropdown-item" href="#">Change avatar</a></li>
+        <li><a class="dropdown-item" href="#">Spam filters</a></li>
+        <li><a class="dropdown-item" href="#">Notification settings</a></li>
+        <li><a class="dropdown-item" href="#">Deactivate my profile</a></li>
+        <li><a class="dropdown-item" href="#">Account deletion</a></li>
+      </ul>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Testimonials</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Store</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Membership</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Buy us a beer</a></li>
+  </ul>
+</div>

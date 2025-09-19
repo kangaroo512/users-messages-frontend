@@ -1,0 +1,89 @@
+<div class="w-full h-screen flex flex-col border rounded shadow-lg">
+
+  <!-- Top Navigation Bar -->
+  <div class="flex justify-between items-center bg-gray-100 px-4 py-2 border-b">
+    <!-- Left side: write message, view profile -->
+    <div class="flex space-x-4">
+      <button class="text-blue-600 hover:underline">Write Message</button>
+      <button class="text-blue-600 hover:underline">View Profile</button>
+    </div>
+
+    <!-- Right side icons -->
+    <div class="flex space-x-4">
+      <button title="Go Back to Inbox">📥</button>
+      <button title="Add as Friend">➕</button>
+      <button title="Start Chat">💬</button>
+      <button title="Switch Editor">📝</button>
+      <button title="Give a Like">👍</button>
+    </div>
+  </div>
+
+  <!-- Chat History Display -->
+  <div class="flex-1 overflow-y-auto bg-white p-4" id="chat-history">
+    <!-- Example Chat Messages -->
+    <div class="text-sm text-gray-800 mb-2"><strong>User A:</strong> Hello!</div>
+    <div class="text-sm text-gray-800 mb-2"><strong>User B:</strong> Hi there!</div>
+  </div>
+
+  <!-- Editor Toolbar -->
+  <div class="bg-gray-200 border-t p-2 flex flex-wrap items-center space-x-2 text-sm">
+    <button>⬅️</button>
+    <button>➡️</button>
+
+    <select class="border rounded px-2 py-1">
+      <option>Font</option>
+      <option>Arial</option>
+      <option>Times New Roman</option>
+    </select>
+
+    <select class="border rounded px-2 py-1">
+      <option>Size</option>
+      <option>12</option>
+      <option>14</option>
+      <option>16</option>
+    </select>
+
+    <button class="font-bold">B</button>
+    <button class="italic">I</button>
+
+    <select class="border rounded px-2 py-1">
+      <option>Formats</option>
+      <option>Heading</option>
+      <option>Code</option>
+    </select>
+
+    <select class="border rounded px-2 py-1">
+      <option>Paragraph Format</option>
+      <option>Normal</option>
+      <option>Blockquote</option>
+    </select>
+
+    <select class="border rounded px-2 py-1">
+      <option>Text Color</option>
+      <option>Red</option>
+      <option>Blue</option>
+    </select>
+
+    <select class="border rounded px-2 py-1">
+      <option>Background</option>
+      <option>Yellow</option>
+      <option>Green</option>
+    </select>
+
+    <button>😊</button>
+    <button>🔍 Preview</button>
+    <button>🖨️ Print</button>
+    <button>🖥️ Fullscreen</button>
+  </div>
+
+  <!-- Text Editor -->
+  <div class="border-t p-2 bg-white">
+    <textarea class="w-full border rounded p-2 h-32 resize-none" placeholder="Write your message here..."></textarea>
+  </div>
+
+  <!-- Send Button -->
+  <div class="p-2 bg-gray-100 border-t text-right">
+    <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Send</button>
+  </div>
+
+</div>

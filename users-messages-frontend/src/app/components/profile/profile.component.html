@@ -1,0 +1,130 @@
+
+<!-- 
+ export class UserPreviewDTO {
+    nickname!:string;
+    gender!: string;
+    birthdate!: Date;
+    //location object is left
+    nativeLanguages!: string[];
+    practiceLanguages!: string[]; // change to userLanguageObject with a proficiency level to display proficiency bar
+    typesOfExchanges!: string[]; // change to userLanguageObject with a proficiency level to display proficiency bar
+    description!: string;
+    hobbies!: string[];
+    profileDate!: Date;
+
+}
+
+
+-->
+
+
+
+@if(userPreview != null) {
+<div>
+    <div>
+        @if(userPreview.nickname && userPreview.nickname.trim() != '') {
+        <h1>{{userPreview.nickname}}</h1>
+        }@else {
+            <b>--</b>
+        }
+
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><i>Gender, Age</i></td>
+                 @if(userPreview.gender) {
+                    <td>{{userPreview.gender + ', ' + userPreview.age}}</td>
+                 }@else {
+                    <td>--</td>
+                 }
+
+            </tr>
+            <tr>
+                <td><i>Country, Town</i></td>
+                @if(userPreview.location != null) {
+                    @if(userPreview.location.country != null && userPreview.location.country.trim() != '') {
+                        {{userPreview.location.country}}<br>
+                    }
+                    @if(userPreview.location.stateProvince != null && userPreview.location.stateProvince.trim() != '') {
+                        {{userPreview.location.stateProvince}}<br>
+                    }
+                    @if(userPreview.location.town != null && userPreview.location.town.trim() != '') {
+                        {{userPreview.location.town}}<br>
+                    }
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+            <td><i>Native language</i></td>
+                @if( userPreview.nativeLanguages != null && userPreview.nativeLanguages.length != 0) {
+                    <td *ngFor="let lang of userPreview.nativeLanguages; let i = index">
+                    {{lang}}
+                    </td> 
+                } @else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+                <td><i>Practice language</i></td>
+                @if(userPreview.practicingLanguages != null && userPreview.practicingLanguages.length != 0) {
+                    <td *ngFor="let lang of userPreview.practicingLanguages; let i = index">
+                        {{lang}}
+                    </td>
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+                <td><i>Type of exchange</i></td>
+                @if(userPreview.typeOfExchange != null) {
+                    @if(userPreview.typeOfExchange.correspondencePenPal) {
+                        Correspondance Pen-pal<br>
+                    }
+                    @if(userPreview.typeOfExchange.faceToFaceConversation) {
+                        Face to face conversation<br>
+                    }
+                    @if(userPreview.typeOfExchange.chatSoftware != null) {
+                        {{userPreview.typeOfExchange.chatSoftware}}
+                    }
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+                <td><i>Description</i></td>
+                @if(userPreview.description && userPreview.description.trim() != '') {
+                    <td style="white-space: pre-wrap; word-break: break-word;">{{userPreview.description}}</td>
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+                <td style="width: 150px; word-wrap: break-word; white-space: normal;"><i>Hobbies and interests</i></td>
+                @if(userPreview.hobbies != null && userPreview.hobbies.length != 0) {
+                    <td>{{userPreview.hobbies.join(", ")}}</td>
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+            <tr>
+                <td><i>Profile date</i></td>
+                @if(userPreview.profileDate != null) {
+                    <td>{{getDate(userPreview.profileDate)}}</td>
+                }@else {
+                    <td>--</td>
+                }
+            </tr>
+
+
+
+        </table>
+    </div>
+
+</div>
+} @else {
+    <p>what's your problem, man</p>
+}
+
+
